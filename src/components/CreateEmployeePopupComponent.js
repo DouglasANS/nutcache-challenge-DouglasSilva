@@ -35,8 +35,8 @@ export default function CreateEmployeePopupComponent(props) {
               props.setGenderCreate(e.target.value);
             }}
           >
-            <option value="Masculino">Masculino</option>
-            <option value="Feminino">Feminino</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
           </select>
           <label>Email: </label>
           <input
@@ -48,7 +48,7 @@ export default function CreateEmployeePopupComponent(props) {
           ></input>
           <label>CPF: </label>
           <input
-          autocomplete="off"
+          autoComplete="off"
             type="number"
             id="cpf"
             placeholder="Your CPF"
