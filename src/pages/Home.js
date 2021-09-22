@@ -22,7 +22,7 @@ export default function Home() {
 
   useEffect(() => {
     findAllEmployee();
-  }, []);
+  });
 
   async function findAllEmployee() {
     const {data} = await Axios.get(`https://crudcrud.com/api/${crudCrudEndPoint}/user`)
