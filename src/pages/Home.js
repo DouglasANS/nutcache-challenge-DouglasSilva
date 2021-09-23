@@ -1,52 +1,28 @@
-import React, { useEffect, useState } from "react";
-import Axios from "axios";
+import React, { useContext, useState } from "react";
 import CreateEmployeePopupComponent from "../components/CreateEmployeePopupComponent";
 import CardEmployeeComponent from "../components/CardEmployeeComponent";
 import UpdateEmployeePopupComponent from "../components/UpdateEmployeePopupComponent";
 import DeleteEmployeePopupComponent from "../components/DeleteEmployeePopupComponent";
+import { DataContext } from '../context/DataContext';
 
 export default function Home() {
-  let crudCrudEndPoint = process.env.REACT_APP_CRUDCRUD_ENDPOINT;
 
   const [popupCreate, setPopupCreate] = useState("");
-
-  
 
   const [popupUpdatePreviously, setPopupUpdatePreviously] = useState('');
   const [popupDeletePreviously, setPopupDeletePreviously] = useState('');
 
-  const [dataPreviouslyEmployee, setDataPreviouslyEmployeey] = useState('');
+  const { allEmployee, dataPreviouslyEmployee } = useContext(DataContext)
+
   
-  const [allEmployee, setAllEmployee] = useState([]);
-
-  //let regexEmail = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-
-   
-
-  useEffect(() => {
-    findAllEmployee();
-  }, []);
-
-  async function findAllEmployee() {
-    const { data } = await Axios.get(
-      `https://crudcrud.com/api/${crudCrudEndPoint}/user`
-    );
-    setAllEmployee(data);
-    let excludeNumber = data.length - 1;
-    setDataPreviouslyEmployeey(data[excludeNumber]);
-    console.log("data: ", data);
-  }
 
   async function deletePreviouslyRegisteredEmployee() {
     setPopupDeletePreviously(true)
-    //await Axios.delete( `https://crudcrud.com/api/${crudCrudEndPoint}/user/${id}`);
   }
 
   function updatePreviouslyRegisteredEmployee() {
     setPopupUpdatePreviously(true)
   }
-
-  
 
   function createEmployee() {
     setPopupCreate(true);
@@ -56,9 +32,6 @@ export default function Home() {
     <div>
       <h1>Home</h1>
       
-      <button onClick={findAllEmployee}>
-        teste
-      </button>
       <button onClick={deletePreviouslyRegisteredEmployee}>
         Delete Previously Registered Employee
       </button>

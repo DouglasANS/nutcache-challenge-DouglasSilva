@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../styles/styleComponent/CreateEmployeePopupComponent.module.scss";
 import Axios from 'axios'
+import { DataContext } from "../context/DataContext";
 
 export default function UpdateEmployeePopupComponent(props) {
     let crudCrudEndPoint = process.env.REACT_APP_CRUDCRUD_ENDPOINT;
@@ -13,6 +14,8 @@ export default function UpdateEmployeePopupComponent(props) {
   const [cpfUpdate, setCpfUpdate] = useState(props.cpf);
   const [startDateUpdate, setStartDateUpdate] = useState(props.startDate);
   const [teamUpdate, setTeamUpdate] = useState(props.team);
+
+  const {findAllEmployee} = useContext(DataContext)
   
 
       async function updateEmployee(){
@@ -27,6 +30,7 @@ export default function UpdateEmployeePopupComponent(props) {
           })
 
           props.setPopupUpdate(false)
+          findAllEmployee()
       }
 
       function cancel(){

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../styles/styleComponent/CreateEmployeePopupComponent.module.scss";
 import Axios from 'axios'
+import { DataContext } from "../context/DataContext";
 
 export default function CreateEmployeePopupComponent(props) {
 
   let crudCrudEndPoint = process.env.REACT_APP_CRUDCRUD_ENDPOINT;
+  
 
   const [nameCreate, setNameCreate] = useState("");
   const [birthDateCreate, setBirthDateCreate] = useState("");
@@ -14,11 +16,15 @@ export default function CreateEmployeePopupComponent(props) {
   const [startDateCreate, setStartDateCreate] = useState("");
   const [teamCreate, setTeamCreate] = useState(null);
 
+  const { findAllEmployee } = useContext(DataContext)
+
+  function Validation(){
+    
+
+    AddEmployee()
+  }
+
   async function AddEmployee() {
-    console.log(cpfCreate.length);
-    if (emailCreate === "" || cpfCreate.length !== 11) {
-      return alert("preencha os campos");
-    }
     try {
       await Axios.post(`https://crudcrud.com/api/${crudCrudEndPoint}/user`, {
         Name: nameCreate,
@@ -31,6 +37,7 @@ export default function CreateEmployeePopupComponent(props) {
       }).then((e) => {
         console.log(e);
         props.setPopupCreate(false);
+        findAllEmployee()
       });
     } catch (error) {
       console.log(error);
@@ -52,6 +59,7 @@ export default function CreateEmployeePopupComponent(props) {
           <input
             type="text"
             placeholder="Your Name"
+            pattern="[a-z]{1,15}"
             onChange={(e) => {
               setNameCreate(e.target.value);
             }}
@@ -93,7 +101,7 @@ export default function CreateEmployeePopupComponent(props) {
           ></input>
           <label>Start Date: </label>
           <input
-            type="date"
+            type="month"
             name="StartDate"
             onChange={(e) => {
               setStartDateCreate(e.target.value);
@@ -110,7 +118,7 @@ export default function CreateEmployeePopupComponent(props) {
             <option value="Frontend">Frontend</option>
             <option value="Backend">Backend</option>
           </select>
-          <button onClick={AddEmployee}>Create Employer</button>
+          <button onClick={Validation}>Create Employer</button>
         </div>
       </div>
     </>
