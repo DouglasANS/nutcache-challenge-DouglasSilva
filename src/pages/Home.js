@@ -10,13 +10,7 @@ export default function Home() {
 
   const [popupCreate, setPopupCreate] = useState("");
 
-  const [nameCreate, setNameCreate] = useState("");
-  const [birthDateCreate, setBirthDateCreate] = useState("");
-  const [genderCreate, setGenderCreate] = useState("Masculino");
-  const [emailCreate, setEmailCreate] = useState("");
-  const [cpfCreate, setCpfCreate] = useState("");
-  const [startDateCreate, setStartDateCreate] = useState("");
-  const [teamCreate, setTeamCreate] = useState(null);
+  
 
   const [popupUpdatePreviously, setPopupUpdatePreviously] = useState('');
   const [popupDeletePreviously, setPopupDeletePreviously] = useState('');
@@ -49,30 +43,10 @@ export default function Home() {
   }
 
   function updatePreviouslyRegisteredEmployee() {
+    setPopupUpdatePreviously(true)
   }
 
-  async function AddEmployee() {
-    console.log(cpfCreate.length);
-    if (emailCreate === "" || cpfCreate.length !== 11) {
-      return alert("preencha os campos");
-    }
-    try {
-      await Axios.post(`https://crudcrud.com/api/${crudCrudEndPoint}/user`, {
-        Name: nameCreate,
-        BirthDate: birthDateCreate.replace("-", "").replace("-", ""),
-        Gender: genderCreate,
-        Email: emailCreate,
-        Cpf: cpfCreate,
-        StartDate: startDateCreate.replace("-", "").replace("-", ""),
-        Team: teamCreate,
-      }).then((e) => {
-        console.log(e);
-        setPopupCreate(false);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  
 
   function createEmployee() {
     setPopupCreate(true);
@@ -116,21 +90,17 @@ export default function Home() {
       })}
 
       {popupCreate && (
-        <CreateEmployeePopupComponent
-          setPopupCreate={setPopupCreate}
-          setNameCreate={setNameCreate}
-          setBirthDateCreate={setBirthDateCreate}
-          setGenderCreate={setGenderCreate}
-          setEmailCreate={setEmailCreate}
-          setCpfCreate={setCpfCreate}
-          setStartDateCreate={setStartDateCreate}
-          setTeamCreate={setTeamCreate}
-          AddEmployee={AddEmployee}
+        <CreateEmployeePopupComponent setPopupCreate={setPopupCreate}
         />
       )}
 
 {popupDeletePreviously && (
   <DeleteEmployeePopupComponent id={dataPreviouslyEmployee._id} setPopupDelete={setPopupDeletePreviously} />
+      )}
+
+{popupUpdatePreviously && (
+        <UpdateEmployeePopupComponent setPopupUpdate={setPopupUpdatePreviously} id={dataPreviouslyEmployee._id} name={dataPreviouslyEmployee.Name} 
+        birthDate={dataPreviouslyEmployee.BirthDate} cpf={dataPreviouslyEmployee.Cpf} gender={dataPreviouslyEmployee.Gender} email={dataPreviouslyEmployee.Email} startDate={dataPreviouslyEmployee.StartDate} team={dataPreviouslyEmployee.Team} />
       )}
 
     </div>

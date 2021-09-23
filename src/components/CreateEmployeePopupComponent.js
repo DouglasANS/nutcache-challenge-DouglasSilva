@@ -1,7 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/styleComponent/CreateEmployeePopupComponent.module.scss";
+import Axios from 'axios'
 
 export default function CreateEmployeePopupComponent(props) {
+
+  let crudCrudEndPoint = process.env.REACT_APP_CRUDCRUD_ENDPOINT;
+
+  const [nameCreate, setNameCreate] = useState("");
+  const [birthDateCreate, setBirthDateCreate] = useState("");
+  const [genderCreate, setGenderCreate] = useState("Masculino");
+  const [emailCreate, setEmailCreate] = useState("");
+  const [cpfCreate, setCpfCreate] = useState("");
+  const [startDateCreate, setStartDateCreate] = useState("");
+  const [teamCreate, setTeamCreate] = useState(null);
+
+  async function AddEmployee() {
+    console.log(cpfCreate.length);
+    if (emailCreate === "" || cpfCreate.length !== 11) {
+      return alert("preencha os campos");
+    }
+    try {
+      await Axios.post(`https://crudcrud.com/api/${crudCrudEndPoint}/user`, {
+        Name: nameCreate,
+        BirthDate: birthDateCreate.replace("-", "").replace("-", ""),
+        Gender: genderCreate,
+        Email: emailCreate,
+        Cpf: cpfCreate,
+        StartDate: startDateCreate.replace("-", "").replace("-", ""),
+        Team: teamCreate,
+      }).then((e) => {
+        console.log(e);
+        props.setPopupCreate(false);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <div className={styles.containerModal}>
@@ -18,7 +53,7 @@ export default function CreateEmployeePopupComponent(props) {
             type="text"
             placeholder="Your Name"
             onChange={(e) => {
-              props.setNameCreate(e.target.value);
+              setNameCreate(e.target.value);
             }}
           ></input>
           <label>Birth Date: </label>
@@ -26,13 +61,13 @@ export default function CreateEmployeePopupComponent(props) {
             type="date"
             name="BirthDate"
             onChange={(e) => {
-              props.setBirthDateCreate(e.target.value);
+              setBirthDateCreate(e.target.value);
             }}
           />
           <label>Gender: </label>
           <select
             onChange={(e) => {
-              props.setGenderCreate(e.target.value);
+              setGenderCreate(e.target.value);
             }}
           >
             <option value="Male">Male</option>
@@ -43,7 +78,7 @@ export default function CreateEmployeePopupComponent(props) {
             type="email"
             placeholder="Your e-mail"
             onChange={(e) => {
-              props.setEmailCreate(e.target.value);
+              setEmailCreate(e.target.value);
             }}
           ></input>
           <label>CPF: </label>
@@ -53,7 +88,7 @@ export default function CreateEmployeePopupComponent(props) {
             id="cpf"
             placeholder="Your CPF"
             onChange={(e) => {
-              props.setCpfCreate(e.target.value);
+              setCpfCreate(e.target.value);
             }}
           ></input>
           <label>Start Date: </label>
@@ -61,13 +96,13 @@ export default function CreateEmployeePopupComponent(props) {
             type="date"
             name="StartDate"
             onChange={(e) => {
-              props.setStartDateCreate(e.target.value);
+              setStartDateCreate(e.target.value);
             }}
           />
           <label>Team: </label>
           <select
             onChange={(e) => {
-              props.setTeamCreate(e.target.value);
+              setTeamCreate(e.target.value);
             }}
           >
             <option value={null}>---</option>
@@ -75,7 +110,7 @@ export default function CreateEmployeePopupComponent(props) {
             <option value="Frontend">Frontend</option>
             <option value="Backend">Backend</option>
           </select>
-          <button onClick={props.AddEmployee}>Create Employer</button>
+          <button onClick={AddEmployee}>Create Employer</button>
         </div>
       </div>
     </>
