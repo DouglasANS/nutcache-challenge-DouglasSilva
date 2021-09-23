@@ -33,18 +33,10 @@ export default function UpdateEmployeePopupComponent(props) {
         props.setPopupUpdate(false)
       }
 
-      function teste(){
-        console.log(props.id)
-        console.log(crudCrudEndPoint)
-        console.log(nameUpdate)
-        console.log(cpfUpdate)
-        console.log(startDateUpdate)
-      }
   return (
     <>
       <div className={styles.containerModal}>
         <div className={styles.contentModal}>
-          <button onClick={teste}>teste</button>
             <h1>Update your data</h1>
 
             <label>Name: {props.name}</label>

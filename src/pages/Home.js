@@ -52,14 +52,11 @@ export default function Home() {
     setPopupCreate(true);
   }
 
-  function teste(){
-    console.log(dataPreviouslyEmployee)
-  }
-
   return (
     <div>
       <h1>Home</h1>
-      <button onClick={teste}>
+      
+      <button onClick={findAllEmployee}>
         teste
       </button>
       <button onClick={deletePreviouslyRegisteredEmployee}>
