@@ -1,5 +1,3 @@
-
-
 <h1 align="center">
 	# nutcache-challenge-DouglasSilva
 </h1>
