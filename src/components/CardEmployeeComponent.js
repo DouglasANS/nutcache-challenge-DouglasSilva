@@ -45,8 +45,8 @@ export default function CardEmployeeComponent({ Employee }) {
           </div>
         </div>
         <div className={styles.cardButton}>
-        <button className={styles.cardEdit} onClick={updatePopup}></button>
-          <button className={styles.cardExclude} onClick={deletePopup}></button>
+        <i className={styles.cardEdit}><button  onClick={updatePopup}></button></i>
+         <i className={styles.cardExclude}><button  onClick={deletePopup}></button></i> 
      
         </div>
       </div>

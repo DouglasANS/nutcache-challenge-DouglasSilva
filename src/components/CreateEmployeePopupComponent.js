@@ -47,14 +47,22 @@ export default function CreateEmployeePopupComponent(props) {
   return (
     <>
       <div className={styles.containerModal}>
-        <div className={styles.contentModal}>
-          <button
+        <div className={styles.contentModal} >
+
+
+          <div className={styles.cancelButton}>
+            <button
             onClick={() => {
               props.setPopupCreate(false);
             }}
           >
             x
           </button>
+          </div>
+
+          
+
+          <div className={styles.dataModal}>
           <label>Name: </label>
           <input
             type="text"
@@ -118,7 +126,13 @@ export default function CreateEmployeePopupComponent(props) {
             <option value="Frontend">Frontend</option>
             <option value="Backend">Backend</option>
           </select>
-          <button onClick={Validation}>Create Employer</button>
+
+          </div>
+          
+          <div className={styles.addButton}>
+            <button onClick={Validation}>Create Employer</button>
+          </div>
+          
         </div>
       </div>
     </>

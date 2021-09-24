@@ -1,12 +1,12 @@
 export function SetTeamColor(team) {
     switch (team) {
       case 'Mobile':
-        return '#F8FFCB'
+        return '#A8B557'
       case 'Frontend':
-        return '#CBE3FF'
+        return '#3F8C90'
       case 'Backend':
-        return '#D2FFCB'
+        return '#BF6D53'
       default:
-        return '#FAD9FF'
+        return '#9D4949'
     }
   }

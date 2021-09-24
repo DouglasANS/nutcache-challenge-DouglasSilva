@@ -46,6 +46,22 @@
             background-position: center;
             background-size: contain;
             background-image: url('../../assets/edit.png');
+
+            &:hover{
+                    
+                width: 55px;
+                height: 55px;
+                }
+
+            button{
+                width: 50px;
+                height: 50px;
+                background: none;
+                border:none;
+
+               
+            }
+
         }
 
         .cardExclude{
@@ -56,6 +72,20 @@
             background-position: center;
             background-size: contain;
             background-image: url('../../assets/exclude.png');
+
+            &:hover{
+                    
+                width: 55px;
+                height: 55px;
+                }
+
+            button{
+                width: 50px;
+                height: 50px;
+                background: none;
+                border:none;
+            }
+
         }
     }
 }

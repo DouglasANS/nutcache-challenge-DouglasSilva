@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import styles from "../styles/styleComponent/CreateEmployeePopupComponent.module.scss";
+import styles from "../styles/styleComponent/UpdateEmployeePopupComponent.module.scss";
 import Axios from 'axios'
 import { DataContext } from "../context/DataContext";
 
@@ -41,7 +41,18 @@ export default function UpdateEmployeePopupComponent(props) {
     <>
       <div className={styles.containerModal}>
         <div className={styles.contentModal}>
-            <h1>Update your data</h1>
+        <div className={styles.cancelButton}>
+            <button
+              onClick={() => {
+                props.setPopupUpdate(false);
+              }}
+            >
+              x
+            </button>
+          </div>
+            <h1>Update employee data</h1>
+
+            <div className={styles.dataModal}>
 
             <label>Name: {props.name}</label>
           <input type="text" placeholder="Your Name" onChange={(e) => {setNameUpdate(e.target.value);}}></input>
@@ -83,11 +94,10 @@ export default function UpdateEmployeePopupComponent(props) {
             <option value="Backend">Backend</option>
           </select>
 
-
-
+          </div>
+          <div className={styles.updateButton}>
             <button onClick={updateEmployee}>Update Data</button>
-            <button onClick={cancel}>Cancel</button>
-          
+            </div>
         </div>
       </div>
     </>
