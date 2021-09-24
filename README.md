@@ -6,6 +6,10 @@
 	<img alt="Logo" src="src/assets/nutcache-logo.png" width="400px" />
 </h1>
 
+<h1 align="center">
+	<img alt="project" src="src/assets/nutcacheProject.jpg" width="400px" />
+</h1>
+
 
 
 Requirements
