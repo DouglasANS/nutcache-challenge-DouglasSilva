@@ -23,7 +23,6 @@ export default function DeleteEmployeePopupComponent(props) {
     <>
       <div className={styles.containerModal}>
         <div className={styles.contentModal}>
-
           <div className={styles.cancelButton}>
             <button
               onClick={() => {

@@ -17,7 +17,7 @@
 
     .cancelButton {
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
       text-align: end;
 
       button {
@@ -64,7 +64,7 @@
       }
     }
 
-    .messageError{
+    .messageError {
       color: red;
       margin-top: 10px;
       height: 20px;

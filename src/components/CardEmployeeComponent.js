@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import styles from "../styles/styleComponent/CardEmployeeComponent.module.scss";
 import DeleteEmployeePopupComponent from "./DeleteEmployeePopupComponent";
 import UpdateEmployeePopupComponent from "./UpdateEmployeePopupComponent";
-import { SetTeamColor } from '../utils/SetTeamColor'
+import { SetTeamColor } from "../utils/SetTeamColor";
 
 export default function CardEmployeeComponent({ Employee }) {
   const [popupDelete, setPopupDelete] = useState("");
   const [popupUpdate, setPopupUpdate] = useState("");
-
-
 
   const { id, name, birthDate, cpf, gender, email, startDate, team } = Employee;
 
@@ -24,8 +22,10 @@ export default function CardEmployeeComponent({ Employee }) {
 
   return (
     <div>
-      <div className={styles.container}
-      style={{ background: cardBackgroundColor }}>
+      <div
+        className={styles.container}
+        style={{ background: cardBackgroundColor }}
+      >
         <div className={styles.card}>
           <div className={styles.data}>
             <label>Name: </label>
@@ -45,9 +45,12 @@ export default function CardEmployeeComponent({ Employee }) {
           </div>
         </div>
         <div className={styles.cardButton}>
-        <i className={styles.cardEdit}><button  onClick={updatePopup}></button></i>
-         <i className={styles.cardExclude}><button  onClick={deletePopup}></button></i> 
-     
+          <i className={styles.cardEdit}>
+            <button onClick={updatePopup}></button>
+          </i>
+          <i className={styles.cardExclude}>
+            <button onClick={deletePopup}></button>
+          </i>
         </div>
       </div>
 
