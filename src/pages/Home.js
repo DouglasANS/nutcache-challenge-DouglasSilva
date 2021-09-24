@@ -30,7 +30,7 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       
       <button onClick={deletePreviouslyRegisteredEmployee}>
         Delete Previously Registered Employee

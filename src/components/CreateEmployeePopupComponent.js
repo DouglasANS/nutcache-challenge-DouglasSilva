@@ -20,11 +20,46 @@ export default function CreateEmployeePopupComponent(props) {
 
   function Validation(){
     
+    let name = nameCreate.replace(/\s+/g, ' ').toLowerCase()
+    let email = emailCreate.trim().toLowerCase()
+    let cpf = cpfCreate.trim()
 
-    AddEmployee()
+    let startDate = startDateCreate.split('-');
+    let startDateFinal = startDate[1]+'/'+startDate[0]
+
+    let ValidNumber = /^\d+$/
+    let validName = /^[a-záàâãéèêíïóôõöúçñ ]+$/;
+    let validEmail = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
+
+    let messageAlert = ''
+
+    if(name === "" || !validName.test(name)){
+      messageAlert = messageAlert + " 'Name '"
+    }
+
+    if (email === !ValidNumber.test(cpf) || !validEmail.test(email)) {
+      messageAlert = messageAlert + " 'Email '"
+    }
+
+    if (cpf === "" || cpfCreate.length !== 11) {
+      messageAlert = messageAlert + " 'Cpf '"
+    }
+    if(birthDateCreate === ""){
+      messageAlert = messageAlert + " 'Birth date '"
+    }
+    if(startDateCreate === ""){
+      messageAlert = messageAlert + " 'Start date '"
+    } 
+
+    if(messageAlert === ""){
+      AddEmployee(startDateFinal)
+    } else{
+      document.getElementById('messageError').innerHTML = "Enter a valid " + messageAlert + ".";
+    }
+    
   }
 
-  async function AddEmployee() {
+  async function AddEmployee(startDateFinal) {
     try {
       await Axios.post(`https://crudcrud.com/api/${crudCrudEndPoint}/user`, {
         Name: nameCreate,
@@ -32,7 +67,7 @@ export default function CreateEmployeePopupComponent(props) {
         Gender: genderCreate,
         Email: emailCreate,
         Cpf: cpfCreate,
-        StartDate: startDateCreate.replace("-", "").replace("-", ""),
+        StartDate: startDateFinal,
         Team: teamCreate,
       }).then((e) => {
         console.log(e);
@@ -128,7 +163,7 @@ export default function CreateEmployeePopupComponent(props) {
           </select>
 
           </div>
-          
+          <div id="messageError" className={styles.messageError}></div>
           <div className={styles.addButton}>
             <button onClick={Validation}>Create Employer</button>
           </div>
