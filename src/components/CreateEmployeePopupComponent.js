@@ -38,7 +38,7 @@ export default function CreateEmployeePopupComponent(props) {
       messageAlert = messageAlert + " 'Email '";
     }
 
-    if (cpf === "" || cpf.length !== 11) {
+    if (cpf === "" || !ValidNumber.test(cpf) ||  cpf.length !== 11) {
       messageAlert = messageAlert + " 'Cpf '";
     }
 
