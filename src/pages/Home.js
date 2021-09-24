@@ -4,6 +4,7 @@ import CardEmployeeComponent from "../components/CardEmployeeComponent";
 import UpdateEmployeePopupComponent from "../components/UpdateEmployeePopupComponent";
 import DeleteEmployeePopupComponent from "../components/DeleteEmployeePopupComponent";
 import { DataContext } from '../context/DataContext';
+import styles from '../styles/stylePage/Home.module.scss'
 
 export default function Home() {
 
@@ -30,7 +31,6 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Home</h1>
       
       <button onClick={deletePreviouslyRegisteredEmployee}>
         Delete Previously Registered Employee
@@ -39,10 +39,11 @@ export default function Home() {
       Update Previously Registered Employee
       </button>
       <button onClick={createEmployee}>Create Employee</button>
+      <div className={styles.cardPosition} >
 
       {allEmployee.map((val) => {
         return (
-          <div key={val.Name}>
+          <div  key={val.Name}>
             <CardEmployeeComponent
               Employee={{
                 id: val._id,
@@ -58,6 +59,8 @@ export default function Home() {
           </div>
         );
       })}
+      
+      </div>
 
       {popupCreate && (
         <CreateEmployeePopupComponent setPopupCreate={setPopupCreate}
