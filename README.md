@@ -7,7 +7,7 @@
 </h1>
 
 <h1 align="center">
-	<img alt="project" src="src/assets/nutcacheProject.jpg" width="400px" />
+	<img alt="project" src="src/assets/nutcacheProject.jpg" width="1000px" />
 </h1>
 
 
