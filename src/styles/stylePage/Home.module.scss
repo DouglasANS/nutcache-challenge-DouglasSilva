@@ -1,11 +1,44 @@
-.container{
+.container {
   background: rgb(255, 255, 255);
   height: 100%;
   width: 100%;
-}
 
-.cardPosition {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  .menuButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      margin: 60px 30px 100px 30px;
+      height: 40px;
+      border-radius: 16px;
+      border: none;
+      box-shadow: 0px 5px 7px #4b4b4b81;
+
+      &:hover{
+        box-shadow: 0px 5px 7px #00000081;
+      }
+    }
+
+    .menuButtonDelete{
+      background-color: rgb(155, 131, 131);
+      width: 300px;
+    }
+
+    .menuButtonUpdate{
+      background-color: rgb(161, 161, 127);
+      width: 300px;
+    }
+    .menuButtonCreate {
+      height: 60px;
+      width: 150px;
+      background-color: rgb(93, 153, 106);
+    }
+  }
+
+  .cardPosition {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }

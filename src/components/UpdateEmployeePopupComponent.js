@@ -16,9 +16,11 @@ export default function UpdateEmployeePopupComponent(props) {
   const [teamUpdate, setTeamUpdate] = useState(props.team);
 
   const {findAllEmployee} = useContext(DataContext)
-  
 
       async function updateEmployee(){
+       
+      
+
         await Axios.put(`https://crudcrud.com/api/${crudCrudEndPoint}/user/${props.id}`, {         
           Name: nameUpdate,
           BirthDate: birthDateUpdate,
@@ -31,10 +33,6 @@ export default function UpdateEmployeePopupComponent(props) {
 
           props.setPopupUpdate(false)
           findAllEmployee()
-      }
-
-      function cancel(){
-        props.setPopupUpdate(false)
       }
 
   return (
@@ -77,9 +75,12 @@ export default function UpdateEmployeePopupComponent(props) {
             }}
           ></input>
           <label>Start Date:{props.startDate} </label>
-          <input type="date" name="StartDate"
+          <input type="month" name="StartDate"
             onChange={(e) => {
-              setStartDateUpdate(e.target.value);
+              
+              let data = e.target.value.split('-');
+              let startDateFinal = data[1]+'/'+data[0]
+              setStartDateUpdate(startDateFinal);
             }}
           />
           <label>Team: {props.team}</label>
